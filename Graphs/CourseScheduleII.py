@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
 
 
@@ -8,7 +8,7 @@ class Solution:
         for course, prerequisite in prerequisites:
             pre[course].append(prerequisite)
         
-        ordering = []
+        q = deque()
         visited, visiting = set(), set()
 
         def dfs(v):
@@ -25,7 +25,7 @@ class Solution:
                     return True
             
             visiting.remove(v)
-            ordering.append(v)
+            q.append(v)
             return False
 
         for v in range(numCourses):
@@ -33,5 +33,8 @@ class Solution:
                 if dfs(v):
                     return []
         
+        ordering = []
+        while q:
+            ordering.append(q.popleft())
         return ordering
     
