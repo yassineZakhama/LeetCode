@@ -8,7 +8,7 @@ class TreeNode:
 
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        res = [float("-inf")]
+        res = [0]
 
         def dfs(node): 
             if not node:
