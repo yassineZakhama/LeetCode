@@ -8,12 +8,12 @@ class Solution:
             if token == "+":
                 stack.append(stack.pop() + stack.pop()) 
             elif token == "-":
-                stack.append(stack.pop() - stack.pop())
+                b, a = stack.pop(), stack.pop()
+                stack.append(a - b)
             elif token == "*":
                 stack.append(stack.pop() * stack.pop())
             elif token == "/":
-                b = stack.pop()
-                a = stack.pop() 
+                b, a = stack.pop(), stack.pop()
                 stack.append(int(a / b))
             else:
                 stack.append(int(token))
