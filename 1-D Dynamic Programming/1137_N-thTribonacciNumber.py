@@ -17,7 +17,7 @@ class Solution2: # Bottom-Up; O(1) space
         if n <= 2:
             return t[n]
         
-        for i in range(3, n):
+        for _ in range(3, n):
             new = sum(t)
             t[0] = t[1]
             t[1] = t[2]
