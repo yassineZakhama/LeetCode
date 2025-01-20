@@ -7,4 +7,4 @@ class Solution:
             newMax = max(currMax, maxWithoutLeft + n)
             maxWithoutLeft = currMax
             currMax = newMax
-        return newMax
+        return currMax
