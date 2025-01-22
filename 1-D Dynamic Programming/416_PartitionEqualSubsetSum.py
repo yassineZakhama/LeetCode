@@ -11,13 +11,14 @@ class Solution:
         def dfs(i, currSum, target):
             if currSum > target or i >= len(nums):
                 return False
-                
-            if (i, currSum) in memo:
-                return memo[(i, currSum)]            
+            
+            key = (i, currSum) 
+            if key in memo:
+                return memo[key]            
             if currSum == target:
                 return True
             
-            memo[(i, currSum)] = dfs(i+1, currSum  + nums[i], target) or dfs(i+1, currSum, target)
-            return memo[(i, currSum)] 
+            memo[key] = dfs(i+1, currSum  + nums[i], target) or dfs(i+1, currSum, target)
+            return memo[key] 
 
         return dfs(0, 0, arrSum / 2)
