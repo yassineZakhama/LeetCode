@@ -2,15 +2,13 @@ from typing import List
 
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
-        temp = []
-        res = []
+        temp, res = [], []
         
         def pushIfValid():
             if len(temp) != 4:
                 return
-
             for candidate in temp:
-                if not (candidate == "0" or candidate[0] != "0" and int(candidate) >= 0 and int(candidate) <= 255): 
+                if not (candidate == "0" or candidate[0] != "0" and int(candidate) <= 255): 
                     return
             res.append(".".join(temp))
 
@@ -23,8 +21,7 @@ class Solution:
                 if j >= len(s):
                     break
                 
-                part = s[i:j+1]
-                temp.append(part)
+                temp.append(s[i:j+1])
                 dfs(j+1)
                 temp.pop()
 
