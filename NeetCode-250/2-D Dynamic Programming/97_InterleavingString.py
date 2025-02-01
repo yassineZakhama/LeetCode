@@ -3,7 +3,7 @@ class Solution:
         impossible = set()
 
         def dfs(i1, i2, i3, n, m, lastTaken):
-            key = (i1, i2, i3)
+            key = (i1, i2)
             if key in impossible:
                 return False
 
