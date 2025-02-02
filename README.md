@@ -2,6 +2,8 @@
 
 This repository contains my solutions to various LeetCode problems. I use this space to track my progress, improve my problem-solving skills, and refine my coding techniques.
 
+You can check out my LeetCode profile [here](https://leetcode.com/u/zakhama/).
+
 ## Programming Language Used
 
 - Python
