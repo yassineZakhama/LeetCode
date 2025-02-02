@@ -8,10 +8,12 @@ You can check out my LeetCode profile [here](https://leetcode.com/u/zakhama/).
 
 - Python
 
-## NeetCode 250
+## Structure
+
+### NeetCode 250
 
 The "NeetCode-250" folder contains my solutions to the [NeetCode 250](https://neetcode.io/practice?tab=neetcode250) problem list, which is a curated set of essential problems for mastering data structures and algorithms.
 
-## Random Problems
+### Random Problems
 
 The "Random" folder contains my solutions to miscellaneous problems, including daily challenges and other problems.
