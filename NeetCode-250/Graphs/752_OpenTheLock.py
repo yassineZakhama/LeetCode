@@ -17,29 +17,24 @@ graph = {
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
         deadends = set(deadends)
-        start = [0, 0, 0, 0]
         
         q = deque()
-        q.append(start)
+        q.append("0000")
         res = 0
         while q:
             lvl = len(q)
             while lvl:
                 lvl -= 1
-                candidateArr = q.popleft()
-                candidate = "".join(map(str, candidateArr))
+                candidate = q.popleft()
                 if candidate == target:
                     return res
                 if candidate in deadends:
                     continue
                 deadends.add(candidate)
                 for i in range(4):
-                    copy1 = candidateArr.copy()
-                    copy2 = candidateArr.copy()
-                    copy1[i] = graph[copy1[i]][0]
-                    copy2[i] = graph[copy2[i]][1]
-                    q.append(copy1)
-                    q.append(copy2)
+                    n = candidate[i]
+                    q.append(candidate[:i] + graph[n][0] + candidate[i+1:])
+                    q.append(candidate[:i] + graph[n][1] + candidate[i+1:])
 
             res += 1
         
