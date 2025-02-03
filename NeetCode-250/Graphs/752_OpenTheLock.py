@@ -17,10 +17,9 @@ graph = {
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
         deadends = set(deadends)
-        
-        q = deque()
-        q.append("0000")
+        q = deque(["0000"])
         res = 0
+        
         while q:
             lvl = len(q)
             while lvl:
@@ -33,9 +32,9 @@ class Solution:
                 deadends.add(candidate)
                 for i in range(4):
                     n = candidate[i]
-                    q.append(candidate[:i] + graph[n][0] + candidate[i+1:])
-                    q.append(candidate[:i] + graph[n][1] + candidate[i+1:])
-
+                    prefix, postfix = candidate[:i], candidate[i+1:] 
+                    q.append(prefix + graph[n][0] + postfix)
+                    q.append(prefix + graph[n][1] + postfix)
             res += 1
         
         return -1
