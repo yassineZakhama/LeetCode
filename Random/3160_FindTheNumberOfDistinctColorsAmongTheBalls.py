@@ -3,12 +3,10 @@ from typing import List
 
 class Solution:
     def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]:
-        res = [0] * len(queries)
         colorToBalls, ballToColor = defaultdict(set), {}
+        res = []
 
-        for i in range(len(queries)):
-            ball, color = queries[i]
-
+        for ball, color in queries:
             currColor = ballToColor.get(ball, 0)
             if currColor == 0:
                 ballToColor[ball] = color
@@ -21,6 +19,6 @@ class Solution:
                 ballToColor[ball] = color
                 colorToBalls[color].add(ball)
 
-            res[i] = len(colorToBalls)                
+            res.append(len(colorToBalls))                
 
         return res
