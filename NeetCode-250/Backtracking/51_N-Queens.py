@@ -1,7 +1,6 @@
 from typing import List
 
 def isSafe(r, c, board):
-    n = len(board)
     row = r - 1
     while row >= 0:
         if board[row][c] == "Q":
