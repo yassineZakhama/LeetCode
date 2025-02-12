@@ -1,9 +1,10 @@
 from typing import List
 
-def getSumDigits(s):
+def getSumDigits(n):
     res = 0
-    for d in s:
-        res += int(d)
+    while n > 0:
+        res += n % 10 
+        n //= 10 
     return res
 
 class Solution:
@@ -11,7 +12,7 @@ class Solution:
         res = -1
         sumToNumber = {}
         for n in nums:
-            sumDigits = getSumDigits(str(n))
+            sumDigits = getSumDigits(n)
             if sumDigits in sumToNumber:
                 currMax = sumToNumber[sumDigits]
                 res = max(res, n + currMax)
