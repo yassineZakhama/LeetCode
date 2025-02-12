@@ -1,5 +1,3 @@
-from collections import defaultdict
-import heapq
 from typing import List
 
 def getSumDigits(s):
@@ -11,12 +9,14 @@ def getSumDigits(s):
 class Solution:
     def maximumSum(self, nums: List[int]) -> int:
         res = -1
-        sumToIndex = defaultdict(list)
-        for i, n in enumerate(nums):
+        sumToNumber = {}
+        for n in nums:
             sumDigits = getSumDigits(str(n))
-            if sumToIndex[sumDigits]:
-                currMax = sumToIndex[sumDigits][0] * -1
+            if sumDigits in sumToNumber:
+                currMax = sumToNumber[sumDigits]
                 res = max(res, n + currMax)
-            
-            heapq.heappush(sumToIndex[sumDigits], n*-1)
+                sumToNumber[sumDigits] = max(currMax, n)
+            else:
+                sumToNumber[sumDigits] = n
+
         return res
