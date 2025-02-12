@@ -1,26 +1,28 @@
+from collections import deque
 import heapq
 from typing import List
 
-
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        remaining = [0] * 26
+        count = [0] * 26
         for task in tasks:
             i = ord(task) - ord("A")
-            remaining[i] += 1
+            count[i] += 1
         
-        heap = [] # time to task index  
-        for i in range(len(remaining)):
-            if remaining[i]:
-                heap.append([0, i])
+        heap, q = [], deque()
+        for i in range(len(count)):
+            if count[i]:
+                heap.append(-count[i])
         heapq.heapify(heap)
 
         time = 0
-        while heap:
-            if heap[0][0] <= time:
-                t, i = heapq.heappop(heap)
-                remaining[i] -= 1
-                if remaining[i]:
-                    heapq.heappush(heap, [t+n+1, i])
+        while heap or q:
+            if heap:
+                c = heapq.heappop(heap)
+                if c + 1 != 0:
+                    q.append((c+1, time+n))
+            if q and q[0][1] == time:
+                c, _ = q.popleft()
+                heapq.heappush(heap, c)
             time += 1
         return time
