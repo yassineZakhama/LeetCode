@@ -9,20 +9,17 @@ class Solution:
         for u, v, w in times:
             adj[u].append((v, w))
         
-        vis, heap = set(), []
+        vis, heap = set(), [(0, k)]
         dist = [float("inf")] * (n + 1)
         dist[0], dist[k] = 0, 0
-
-        for v, w in adj[k]:
-            dist[v] = w
-            heapq.heappush(heap, (w, v))
 
         while heap:
             d, u = heapq.heappop(heap)
             for v, w in adj[u]:
-                if v not in vis and d + w < dist[v]:
-                    dist[v] = d + w
-                    heapq.heappush(heap, (d + w, v))
+                candidateNewDist = d + w
+                if v not in vis and candidateNewDist < dist[v]:
+                    dist[v] = candidateNewDist
+                    heapq.heappush(heap, (candidateNewDist, v))
             vis.add(u)
 
         res = max(dist)
